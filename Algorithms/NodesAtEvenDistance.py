@@ -1,5 +1,4 @@
 import fileinput
-from collections import deque
 
 inputLines = fileinput.input()
 
@@ -9,34 +8,30 @@ for l in range(testCases):
 
     n = int(inputLines.readline())
 
-    adjacency = [[-1 for i in range(n)] for j in range(n)]
-
+    adjacency = {i : [] for i in range(n)}
+    visited = {}
     splitEdges = list(map(int,inputLines.readline().split()))
 
     for i in range(2*(n-1)):
-        if(i%2 == 0):
-            adjacency[splitEdges[i]-1][splitEdges[i+1]-1] = 0
-            adjacency[splitEdges[i+1]-1][splitEdges[i]-1] = 0
+        if(not i%2):
+            adjacency[splitEdges[i] - 1].append(splitEdges[i+1]-1)
+            adjacency[splitEdges[i+1]-1].append(splitEdges[i] - 1)
 
 
-    s = [0]
+
+        
+    evens = {True : 1, False: 0}
+
+    s = [(0,True)]
 
     while(len(s) > 0):
-        curr = s.pop()
-        for i in range(n):
-            if(i == curr):
-                adjacency[curr][curr] = 0
-            elif(adjacency[curr][i] == 0 and adjacency[0][i] < 1):
-                adjacency[0][i] = adjacency[0][curr] + 1
-                s.append(i)
+        curr, even = s.pop()
+        for other in adjacency[curr]:
+            if(not adjacency[other] == None):
+                evens[not even] += 1
+                s.append((other, not even))
+        adjacency[curr] = None
 
-    odds = 0.0
-    evens = 0.0
-
-    for k in range(n):
-        if(adjacency[0][k]%2 == 0):
-            evens += 1.0
-        else:
-            odds += 1.0
-    print(int((odds*(odds-1))/2 + ((evens-1)*evens)/2)) 
+    
+    print(int((evens[True]*(evens[True]-1))/2 + ((evens[False]-1)*evens[False])/2))
 	
