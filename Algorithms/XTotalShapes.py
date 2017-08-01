@@ -1,3 +1,5 @@
+"""http://practice.geeksforgeeks.org/problems/x-total-shapes/0"""
+
 import fileinput
 from collections import deque
 
