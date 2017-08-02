@@ -1,3 +1,5 @@
+"http://practice.geeksforgeeks.org/problems/head-to-tail-ordering/0"
+
 import fileinput
 import collections
 
