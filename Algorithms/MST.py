@@ -6,10 +6,12 @@ def spanningTree(graph, n, e):
 
     while len(distance) > 0:
         minKey = min(distance,key = distance.get)
+        if(distance[minKey] == 1001):
+            return mstSize
         mstSize += distance[minKey]
         for j in range(n):
             edge = graph[minKey][j]
-            if(j in distance and edge < distance[j] and not j == minKey):
+            if(edge > 0 and j in distance and edge < distance[j] and not j == minKey):
                 distance[j] = edge
         del distance[minKey]
     return mstSize

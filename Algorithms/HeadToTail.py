@@ -3,7 +3,7 @@
 import fileinput
 import collections
 
-alphabet = "abcdefghijklmnopqrstuvwkyz"
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 letterNumber = {alphabet[i]:i for i in range(26)}
 
 def wordyCheck(n, words):
@@ -73,7 +73,7 @@ testCases = int(inputLines.readline())
 
 for l in range(testCases):
     n = int(inputLines.readline())
-    words = []
-    for i in range(n):  
-        words.append(inputLines.readline().strip())
+    words = inputLines.readline().split()
+    # for i in range(n):  
+    #     words.append(inputLines.readline().strip())
     print(wordyCheck(n,words))
