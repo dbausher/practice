@@ -1,5 +1,8 @@
 //http://practice.geeksforgeeks.org/problems/insert-in-a-sorted-list/1
-/*structure of the node of the list is as
+
+
+/*
+structure of the node of the list is as
 struct node
 {
     int data;
@@ -8,34 +11,31 @@ struct node
 */
 void sortedInsert(struct node** head_ref, int data)
 {
-    //cout<<"hello";
-    std::string output ("");
-    std::string dataString (std::to_string(data));
+    node* dataNode = new node();
+    dataNode->data = data;
     if(head_ref == NULL){
-        cout<<dataString + '\n';
+        head_ref = &dataNode;
         return;
         }
-    bool placed = false;
+    node* head = *head_ref;
+    if(head->data > data){
+        dataNode->next = head;
+        *head_ref = dataNode;
+        return;
+    }
     
     node* temp = new node;
     temp = *head_ref;
-    while(temp){
-        if(temp->data > data && !placed){
-            output += dataString;
-            output += " ";
-            placed = true;
+    while(temp->next){
+        if(temp->next->data > data){
+            dataNode->next = temp->next;
+            temp->next = dataNode;
+            return;
         }
-        output += std::to_string(temp->data);
-        
-        if(temp->next){
-            output += " ";
-            temp = temp->next;
-        }
-        else{
-            break;
-        }
+        temp = temp->next;
     }
-    cout<<output;
+    
+    temp->next = dataNode;
     return;
     
 }
