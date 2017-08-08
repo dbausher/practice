@@ -25,7 +25,7 @@ void splitList(struct node* source, struct node** frontRef, struct node** backRe
             halfway = halfway->next;
         }
         current = current->next;
-        half = half;
+        half = !half;
     }
     
     node* nextBoy = halfway->next;
@@ -40,7 +40,7 @@ struct node* mergeList(struct node* a, struct node* b)
 {
     node* comboList = new node();
     node* curr = comboList;
-    if(a && b){
+    while(a && b){
         if(a->data > b->data){
             curr->next = a;
             a = a->next;
@@ -49,7 +49,8 @@ struct node* mergeList(struct node* a, struct node* b)
             b = b->next;
         }
         curr = curr->next;
-    }else if(a){
+    }
+    if(a){
         curr->next = a;
     }else if(b){
         curr->next = b;
