@@ -55,6 +55,8 @@ struct node* mergeList(struct node* a, struct node* b)
     }else if(b){
         curr->next = b;
     }
-    return comboList->next;
+    a = comboList->next;
+    delete comboList;
+    return a;
 
 }
