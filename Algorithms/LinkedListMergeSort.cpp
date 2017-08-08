@@ -10,17 +10,15 @@ struct node
 */
 /* split the nodes of the given list into front and back halves,
      and return the two lists using the reference parameters.*/
+
 void splitList(struct node* source, struct node** frontRef, struct node** backRef)
 {
-    
-    source = source->next;
     
     node* current = source;
     node* halfway = source;
     bool half = false;
 
     while(current->next){
-
         if(half){
             halfway = halfway->next;
         }
@@ -30,18 +28,19 @@ void splitList(struct node* source, struct node** frontRef, struct node** backRe
     
     node* nextBoy = halfway->next;
     halfway->next = NULL;
-    backRef = &nextBoy;
-    frontRef = &source;
+    *backRef = nextBoy;
+    *frontRef = source;
     return;
 
 }
+
 // merges two sorted list into one big list
 struct node* mergeList(struct node* a, struct node* b)
 {
-    node* comboList = new node();
-    node* curr = comboList;
+    node comboList;
+    node* curr = &comboList;
     while(a && b){
-        if(a->data > b->data){
+        if(a->data < b->data){
             curr->next = a;
             a = a->next;
         }else{
@@ -55,8 +54,6 @@ struct node* mergeList(struct node* a, struct node* b)
     }else if(b){
         curr->next = b;
     }
-    a = comboList->next;
-    delete comboList;
-    return a;
+    return comboList.next;
 
 }
