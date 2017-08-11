@@ -17,26 +17,26 @@ def mods(x):
     return factors
 
 def canWin(curr):
-    if(curr in memo):
-        return memo[curr]
-    value = False
-    for i in mods(curr):
-        ivalue = True
-        sub = curr-i
-        if sub in memo:
-            ivalue = not memo[sub]
-        else:
-            for j in mods(sub):
-                if not canWin(sub-j):
-                    ivalue = False
-                    memo[sub] = True
-                    break
-        if ivalue:
-            memo[sub] = False
-            value = True
-            break
-    memo[curr] = value
-    return value
+    # if(curr in memo):
+    #     return memo[curr]
+    # value = False
+    # for i in mods(curr):
+    #     ivalue = True
+    #     sub = curr-i
+    #     if sub in memo:
+    #         ivalue = not memo[sub]
+    #     else:
+    #         for j in mods(sub):
+    #             if not canWin(sub-j):
+    #                 ivalue = False
+    #                 memo[sub] = True
+    #                 break
+    #     if ivalue:
+    #         memo[sub] = False
+    #         value = True
+    #         break
+    # memo[curr] = value
+    return not curr%2
 
 for l in range(testCases):
     n = int(inputLines.readline())
