@@ -67,19 +67,29 @@ def pi(x):
     pis[origx] = curr
     return pis[origx]
 
+def phi(x):
+    result = x
+    for k in range(2,int(math.sqrt(x) + 1)):
+        if not x%k:
+            result -= result/k
+            while not x%k:
+                x //=k
+    if x > 1:
+        result -= result/x
+    return result
+
+
+
 
 for l in range(testCases):
     n = int(inputLines.readline())
     pis = {2:.5,3:2.0/3.0}
-    biggest = pow(10,12)
+    biggest = 1
     biggestSource = 1
     for i in range(2,n + 1):
-        pis[i] = pi(i)
-        pii = pis[i]
-
-
-        if(pii < biggest):
-            biggest = pii
+        ph = phi(i)
+        if(i/ph > biggest):
+            biggest = i/ph
             biggestSource = i
 
     print(biggestSource)
