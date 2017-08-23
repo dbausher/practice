@@ -69,11 +69,13 @@ def pi(x):
 
 def phi(x):
     result = x
-    for k in range(2,int(math.sqrt(x) + 1)):
+    k = 2
+    while k < int(math.sqrt(x) + 1):
         if not x%k:
             result -= result/k
             while not x%k:
                 x //=k
+        k += 1
     if x > 1:
         result -= result/x
     return result
@@ -83,10 +85,9 @@ def phi(x):
 
 for l in range(testCases):
     n = int(inputLines.readline())
-    pis = {2:.5,3:2.0/3.0}
     biggest = 1
     biggestSource = 1
-    for i in range(2,n + 1):
+    for i in range(2,n + 1,2):
         ph = phi(i)
         if(i/ph > biggest):
             biggest = i/ph
