@@ -1,5 +1,5 @@
 
-"""http://practice.geeksforgeeks.org/problems/rotate-bits/0"""
+"""http://www.geeksforgeeks.org/count-triplets-with-sum-smaller-that-a-given-value/"""
 
 import fileinput
 import math
