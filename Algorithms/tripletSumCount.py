@@ -14,13 +14,15 @@ inputLines = fileinput.input()
 testCases = int(inputLines.readline())
 for l in range(testCases):
     n, s = list(map(int,inputLines.readline().strip().split()))
-    numList = list(map(int,inputLines.readline().strip().split()))
+    numList = list(sorted(map(int,inputLines.readline().strip().split())))
     numList.sort()
 
     count = 0
 
-    for i in range(len(numList)):
-        s2 = s - numList[i]
+    for i, v in enumerate(numList):
+        if v + numList[0] > s:
+            break
+        s2 = s - v
         j = i + 1
         k = n - 1
         while j < k:
