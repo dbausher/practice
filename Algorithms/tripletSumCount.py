@@ -1,26 +1,25 @@
-
 """http://www.geeksforgeeks.org/count-triplets-with-sum-smaller-that-a-given-value/"""
 
 import fileinput
-import math
-import collections
-import functools
 
 inputLines = fileinput.input()
 
 
 #I didn't manage to solve this one. I looked it up after staring for about an hour.
+
 #Also its currently n^2 and doesn't pass so I'm shelving this one for a day when I've slept.
+#Turns out it passes if i just put the whole thing in a function so *shrug*
+
 testCases = int(inputLines.readline())
 for l in range(testCases):
     n, s = list(map(int,inputLines.readline().strip().split()))
     numList = list(sorted(map(int,inputLines.readline().strip().split())))
-    numList.sort()
+    #numList.sort()
 
     count = 0
 
     for i, v in enumerate(numList):
-        if v + numList[0] > s:
+        if v + numList[0] >= s:
             break
         s2 = s - v
         j = i + 1
